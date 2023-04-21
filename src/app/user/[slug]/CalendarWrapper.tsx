@@ -33,17 +33,11 @@ function reducerFunction(state, action) {
   }
 
   console.log(action.direction);
-  if (currentDay === 1 && action.direction === "up") {
+  if (currentDay === 0 && action.direction === "up") {
     console.log("called");
-    state.snake[1] = state.weeks[currentWeek].contributionDays[6]?.date;
-    return {
-      ...state,
-    };
-  } else if (currentDay === 5 && action.direction === "down") {
-    state.snake[1] = state.weeks[currentWeek].contributionDays[0]?.date;
-    return {
-      ...state,
-    };
+    state.snake[0] = state.weeks[currentWeek].contributionDays[6]?.date;
+  } else if (currentDay === 6 && action.direction === "down") {
+    state.snake[0] = state.weeks[currentWeek].contributionDays[0]?.date;
   }
 
   // console.log(state.snake[0], weeks);
