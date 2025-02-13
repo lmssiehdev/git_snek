@@ -1,0 +1,22 @@
+---
+import "../../styles/global.css";
+const { username } = Astro.params;
+import { Keyboard } from "../../components/keyboard";
+import { fetchUser } from "../../utils/fetch-user";
+import CalendarWrapper from "../../components/calendar";
+
+export const prerender = false;
+
+const data = await fetchUser("lmssiehdev");
+const weeks = data?.result?.weeks;
+---
+
+<h1>{username}</h1>
+{
+    weeks && (
+        <>
+            <CalendarWrapper client:only weeks={weeks} />
+            <Keyboard client:only />
+        </>
+    )
+}
